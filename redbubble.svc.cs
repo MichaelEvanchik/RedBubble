@@ -27,7 +27,7 @@ namespace redbubble_create
             string stemp_thumb = "https://yourdomain.com/RedBubble/images/na.gif";
 
             //get custom http header code from config file
-            var config = ConfigurationManager.GetSection("applicationSettings/stylus.Properties.Settings");
+            var config = ConfigurationManager.GetSection("applicationSettings/redbubble.Properties.Settings");
             var xAuthToken = ((ClientSettingsSection)config).Settings.Get("XAuthToken").Value.ValueXml.InnerText;
 
             //get remote information
