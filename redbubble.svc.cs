@@ -10,9 +10,9 @@ using System.ServiceModel.Web;
 using System.Web.Script.Serialization;
 using RedBubbleObjects;
 
-namespace stylus_create
+namespace redbubble_create
 {   
-    public class stylus : IStylus_Create
+    public class redbubble : IRedBubble_Create
     {
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, UriTemplate = "create")]
         public oCreateOrderResponse PostOrder(oCreateOrderRequest order)
@@ -46,7 +46,7 @@ namespace stylus_create
                     LogError(order.external_ref, "AuthFailed", sref, order,ip);
                     throw new System.ServiceModel.Web.WebFaultException(HttpStatusCode.Unauthorized);
                 }
-                    using (var dc = new stylusDataContext())
+                    using (var dc = new redbubbleDataContext())
                     {
                         try
                         {
@@ -210,7 +210,7 @@ namespace stylus_create
             {
                 email em = new email();
                 em.SendEmail("somebody@yourself.com", "somebodyelse@yourself.com", "", "alerts@yourself.com", "RedBubble endpoint", err_subject, err_msg, "smtp.yourself.com", "", "", "", false);
-                using (var dc = new stylusDataContext())
+                using (var dc = new redbubbleDataContext())
                 {
                     dc.sp_insert_orders_error_log(order_id, err_subject, err_msg, ip);
                 }
@@ -220,7 +220,7 @@ namespace stylus_create
             try
             {
                 var json = new JavaScriptSerializer().Serialize(o);
-                using (var dc2 = new stylusDataContext())
+                using (var dc2 = new redbubbleDataContext())
                 {
                     dc2.sp_update_ordrers_err_log_json(order_id, json.ToString());
                 }
