@@ -1,10 +1,10 @@
 using System.ServiceModel;
 using RedBubbleObjects;
 
-namespace stylus_create
+namespace redbubble_create
 {
     [ServiceContract]
-    public interface IStylus_Create
+    public interface IRedBubble_Create
     {
         [OperationContract]
         oCreateOrderResponse PostOrder(oCreateOrderRequest order);
