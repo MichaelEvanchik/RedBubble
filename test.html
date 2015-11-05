@@ -1,0 +1,51 @@
+<input type="button" onclick="testIt();" style="width: 103px" value="test" />
+        <script type="text/javascript" src="/scripts/jquery-2.1.4.min.js"></script>
+        <script>
+        function testIt() {
+            var items = Array();
+             items[0] = {
+                "external_ref":"977654",
+                "sku":"RB101-BLK-L",
+                "description": "Mens Graphic Printed T-Shirt",
+                "color": "BLACK",
+                "size":"LARGE",
+                "quantity": "1",
+                "external_url": "https://somedomain.com/file.png",
+                "external_thumbnail_url":"https://somedomain.com/thumb.png",
+                "artist_name": "Joseph Whatever,
+                "title": "The Subject of This"
+            };
+            var orderData = {
+                "external_ref": "982698",
+                "sale_datetime": "2015-10-19 15:57:00",
+                "purchase_complete": true,
+                "company_ref_id": "RedBubble",
+                "customer_name": "John Doe",
+                "shipping_address_1": "Company",
+                "shipping_address_2": "101 Test St",
+                "shipping_address_3": "State",
+                "shipping_address_4": "City",
+                "shipping_postcode": "06060",
+                "shipping_country": "United States",
+                "shipping_country_code": "US",
+                "shipping_method":"EXPRESS",
+                "phone": "201-555-1212",
+                "items" : items
+            };
+            $.ajax({ 
+                type: "POST",
+                url: "https://yourdomain.com/endpoint/stylus.svc/create",
+                data: JSON.stringify(orderData),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                headers: { "X-Auth-Token": "SecretTokenKeyHere" },
+                processData: true,
+                success: function (data, status, jqXHR) {
+                    alert("success..." + status + " " + data + " " + jqXHR);
+                },
+                error: function (xhr) {
+                    alert(xhr.status);
+                }
+            });
+        }
+    </script>
